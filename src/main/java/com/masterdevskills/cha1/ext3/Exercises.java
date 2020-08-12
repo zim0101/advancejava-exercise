@@ -23,8 +23,10 @@
 package com.masterdevskills.cha1.ext3;
 
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 /**
  * @author A N M Bazlur Rahman @bazlur_rahman
@@ -41,7 +43,8 @@ public class Exercises {
 	 * @see List#replaceAll(UnaryOperator)
 	 */
 	public static List<Integer> doubling(List<Integer> ints) {
-		throw new RuntimeException("NotYetImplemented");
+		ints.replaceAll(integer -> integer * 2);
+		return ints;
 	}
 
 	/**
@@ -52,7 +55,8 @@ public class Exercises {
 	 * @see List#replaceAll(UnaryOperator)
 	 */
 	public static List<String> addSuffix(List<String> items, String suffix) {
-		throw new RuntimeException("NotYetImplemented");
+		items.replaceAll(item -> item + suffix);
+		return items;
 	}
 
 	/***
@@ -61,7 +65,8 @@ public class Exercises {
 	 * @param people list of person
 	 * */
 	public static List<Person> sortItemByFirstNameOrderAscending(List<Person> people) {
-		throw new RuntimeException("NotYetImplemented");
+		people.sort(firstNameAscendingComparator());
+		return people;
 	}
 
 	/**
@@ -70,7 +75,8 @@ public class Exercises {
 	 * @param people list of person
 	 */
 	public static List<Person> sortByLastNameOrderDescending(List<Person> people) {
-		throw new RuntimeException("NotYetImplemented");
+		people.sort((p1, p2) -> p2.getLastName().compareTo(p1.getLastName()));
+		return people;
 	}
 
 	/**
@@ -81,6 +87,58 @@ public class Exercises {
 	 * @param people list of person
 	 */
 	public static List<Person> sortByFirstNameAndThenLastNameAndThenAge(List<Person> people) {
-		throw new RuntimeException("NotYetImplemented");
+		return people.stream()
+				.sorted(fullNameAndAgeAscendingComparator())
+				.collect(Collectors.toList());
+	}
+
+	/**
+	 * This method will return the comparator of first name
+	 * with ascending order
+	 *
+	 * @return Comparator
+	 */
+	private static Comparator<Person> firstNameAscendingComparator() {
+		return Comparator.comparing(Person::getFirstName);
+	}
+
+	/**
+	 * This method will return the comparator of last name
+	 * with ascending order
+	 *
+	 * @return Comparator
+	 */
+	private static Comparator<Person> lastNameAscendingComparator() {
+		return Comparator.comparing(Person::getLastName);
+	}
+
+	/**
+	 * This method will compare first name then last name
+	 * with ascending order
+	 *
+	 * @return Comparator
+	 */
+	private static Comparator<Person> fullNameComparator() {
+		return firstNameAscendingComparator().
+				thenComparing(lastNameAscendingComparator());
+	}
+
+	/**
+	 * This method will return the comparator of age
+	 * with ascending order
+	 *
+	 * @return Comparator
+	 */
+	private static Comparator<Person> ageAscendingComparator() {
+		return Comparator.comparing(Person::getAge);
+	}
+
+	/**
+	 * This method will compare full name and then age
+	 *
+	 * @return Comparator
+	 */
+	private static Comparator<Person> fullNameAndAgeAscendingComparator() {
+		return fullNameComparator().thenComparing(ageAscendingComparator());
 	}
 }
