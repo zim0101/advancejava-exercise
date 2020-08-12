@@ -22,8 +22,15 @@
 
 package com.masterdevskills.cha1.ext1;
 
+
+import com.masterdevskills.cha1.ext5.Log;
+import com.masterdevskills.cha1.ext5.Logger;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
+import static java.nio.file.Files.*;
 
 /**
  * TODO : Write a file processor that would read text from a text file.
@@ -33,6 +40,11 @@ import java.util.function.Predicate;
  */
 
 public class FileProcessor {
+
+    /**
+     * Custom logger
+     */
+    private final Log logger = Logger.getLogger();
 
     /**
      * Add your code in the following method
@@ -45,8 +57,17 @@ public class FileProcessor {
      * @see List#removeIf(Predicate)
      */
     public List<String> readFileFrom(String fileName) {
+        List<String> listOfLines = null;
 
-        throw new RuntimeException("Not Yet Implemented");
+        try {
+            listOfLines = readAllLines(Paths.get(fileName));
+            listOfLines.removeIf(String::isBlank);
+        } catch (IOException e) {
+            logger.debug("File Read Exception Log: {}",
+                    () -> new String[]{e.getMessage()});
+        }
+
+        return listOfLines;
     }
 
     /**
@@ -59,8 +80,13 @@ public class FileProcessor {
      * @see String#join(CharSequence, CharSequence...)
      */
     public void writeToFile(List<String> lines, String fileName) {
-
-        throw new RuntimeException("Not Yet Implemented");
+        String text = String.join("\n", lines);
+        try {
+            Files.writeString(Paths.get(fileName), text);
+        } catch (IOException e) {
+            logger.debug("File Write Exception Log: {}",
+                    () -> new String[]{e.getMessage()});
+        }
     }
 }
 
