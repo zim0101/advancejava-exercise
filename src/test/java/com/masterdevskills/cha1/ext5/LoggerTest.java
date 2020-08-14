@@ -21,8 +21,8 @@ class LoggerTest {
     private void assertMethodExist(final Method[] methods, final String name) {
         var param = "java.util.function.Supplier";
         boolean anyMatch = Arrays.stream(methods)
-                          .anyMatch(method -> method.getName().equals(name)
-                                                      && method.getParameterTypes()[1].getName().equals(param));
+                .anyMatch(method -> method.getName().equals(name)
+                        && method.getParameterTypes()[1].getName().equals(param));
         assertTrue(anyMatch);
     }
 }
