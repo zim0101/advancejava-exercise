@@ -1,4 +1,8 @@
-package com.masterdevskills.cha1.ext4;
+package com.masterdevskills.cha1.ext4.Deck;
+
+import com.masterdevskills.cha1.ext4.Card.Card;
+import com.masterdevskills.cha1.ext4.Deck.Deck;
+import com.masterdevskills.cha1.ext4.Player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -28,7 +32,8 @@ public class StandardDeck implements Deck {
     }
 
     @Override
-    public Map<Integer, Deck> deal(final int players, final int numberOfCards) throws IllegalArgumentException {
+    public Map<Player, List<Card>> deal()
+            throws IllegalArgumentException {
         return null;
     }
 
