@@ -1,4 +1,4 @@
-package com.masterdevskills.cha1.ext4;
+package com.masterdevskills.cha1.ext4.Card;
 
 public interface Card extends Comparable<Card> {
     enum Suit {

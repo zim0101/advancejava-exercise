@@ -1,4 +1,6 @@
-package com.masterdevskills.cha1.ext4;
+package com.masterdevskills.cha1.ext4.Card;
+
+import com.masterdevskills.cha1.ext4.Card.Card;
 
 public class PlayingCard implements Card {
     private final Suit suit;
