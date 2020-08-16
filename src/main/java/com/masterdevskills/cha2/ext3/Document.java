@@ -3,6 +3,7 @@ package com.masterdevskills.cha2.ext3;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +29,10 @@ public class Document {
 		return new Page(format("%s%n%s", original.getContent(), footer));
 	}
 
+	public String getTitle() {
+		return this.title;
+	}
+
 	private Document copyWithPages(List<Page> newPages) {
 		return new Document(title, newPages);
 	}
@@ -38,6 +43,10 @@ public class Document {
 						.collect(collectingAndThen(Collectors.toList(), this::copyWithPages));
 	}
 
+	List<Page> getPages() {
+		return this.pages;
+	}
+
 	@Getter
 	@Setter
 	public static class Page {
@@ -45,6 +54,10 @@ public class Document {
 
 		public Page(String content) {
 			this.content = content;
+		}
+
+		public String getContent() {
+			return this.content;
 		}
 	}
 }
