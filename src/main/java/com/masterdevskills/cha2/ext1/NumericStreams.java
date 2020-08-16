@@ -45,7 +45,6 @@ public class NumericStreams {
 	 * @see Stream#collect(Collector)
 	 */
 	public static List<Integer> generate(int series) {
-
 		return Stream.iterate(new int[]{1, 1}, i -> new int[]{i[1],
 				i[1] + i[0]})
 				.limit(series)
