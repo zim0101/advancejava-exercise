@@ -86,4 +86,24 @@ public class Movie {
 	private String website;
 	@JsonProperty("Response")
 	private String response;
+
+	public String getYear() {
+		return this.year;
+	}
+
+	public String getTitle() {
+		return this.title;
+	}
+
+	public String getDirector() {
+		return this.director;
+	}
+
+	public Double getImdbRating() {
+		return this.imdbRating;
+	}
+
+	public String getRated() {
+		return this.rated;
+	}
 }
