@@ -39,7 +39,6 @@ public class Documents {
 	 * @see Documents#characterCount(Document.Page)
 	 */
 	public static List<Integer> pageCharacterCounts(Document document) {
-
 		return document.getPages().stream()
 				.map(Documents::characterCount)
 				.collect(Collectors.toList());
